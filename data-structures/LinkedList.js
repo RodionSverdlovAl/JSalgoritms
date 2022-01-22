@@ -1,3 +1,10 @@
+class Node {
+    constructor(data, next = null){
+        this.data = data;
+        this.next = next;
+    }
+}
+
 class LinkedList{
     constructor(){
         this.head = null
@@ -5,7 +12,7 @@ class LinkedList{
     }
 
     append(data){
-        const node = {data, next: null}
+        const node = new Node(data)
 
         if(this.tail){
             this.tail.next = node
@@ -16,8 +23,27 @@ class LinkedList{
 
         this.tail = node
     }
+    prepend(data){
+        const node = new Node(data,this.head)
+        this.head = node
+        if(!this.tail){
+            this.tail = node
+        }
+    }
+    toArray(){
+        const output = []
+        let current = this.head
+
+        while(current){
+            output.push(current)
+            current = current.next
+        }
+        return output
+    }
 }
 
 const list = new LinkedList()
-list.append('hi')
-console.log(list);
+//list.append('hi')
+//list.prepend('HELLO HOGER')
+//console.log(list);
+console.log(list.toArray)
